@@ -5,8 +5,10 @@ public class Prato {
     private String nome;
     private int complexidade;
 
-
-
+    public Prato(String nome, int complexidade) {
+        this.nome = nome;
+        this.complexidade = complexidade;
+    }
 
     //METODOS
 

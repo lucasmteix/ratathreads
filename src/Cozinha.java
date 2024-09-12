@@ -1,15 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
-public class Cozinha extends Thread{
+public class Cozinha {
 
     static ArrayList<Prato> pratos = new ArrayList<>();
-
-    @Override
-    public void run(){
-
-
-    }
 
     public static void main(String[] args) {
 
@@ -23,27 +18,25 @@ public class Cozinha extends Thread{
         //Variaveis auxiliares
         Scanner leitor = new Scanner(System.in);
         boolean flag = true;
+        Random gerador = new Random();
 
-        while(flag){
+        //Threads
+        Cozinheiro cozinheiro1 = new Cozinheiro();
+        Cozinheiro cozinheiro2 = new Cozinheiro();
 
-            prato = new Prato();
-            
-            System.out.print("\nNome do prato: ");
-            prato.setNome(leitor.nextLine());
 
-            System.out.print("Complexidade do prato: ");
-            prato.setComplexidade(leitor.nextInt());
 
-            pratos.add(prato);
 
-            System.out.print("Continuar?");
-            flag = leitor.nextBoolean();
-            leitor.nextLine();
+        //ENTRADA
+
+        //Preenchendo o array de pratos
+        for(int i = 1; i <= 10; i++){
+
+            Prato novoPrato = new Prato(Integer.toString(i), gerador.nextInt(11)*1000);
+            pratos.add(novoPrato);
         }
 
-        for(Prato pratoX : pratos){
-
-            System.out.println(pratoX.getNome());
-        }
+        cozinheiro1.start();
+        cozinheiro2.start();
     }
 }
