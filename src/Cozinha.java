@@ -44,7 +44,7 @@ public class Cozinha {
         //Criando os cozinheiros
         for(int i = 1; i<=quantidadeCozinheiros; i++){
 
-            novoCozinheiro = new Cozinheiro("FCFS");
+            novoCozinheiro = new Cozinheiro("RR");
             cozinheiros.add(novoCozinheiro);
         }
 
@@ -52,7 +52,7 @@ public class Cozinha {
         for(int i = 1; i <= quantidadePratos; i++){
 
             novoPrato = new Prato(nomesPratos[gerador.nextInt(nomesPratos.length)] + " (" +
-                    i + ")", 3/*gerador.nextInt(11)*/);
+                    i + ")", gerador.nextInt(11));
             pratos.add(novoPrato);
         }
 

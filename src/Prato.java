@@ -3,11 +3,13 @@ public class Prato {
     //ATRIBUTOS
 
     private String nome;
-    private int complexidade;
+    private final int complexidade;
+    int trabalhoRestante; //representa quanto trabalho ainda ha a ser feito naquele prato, comeca igual a complexidade
 
     public Prato(String nome, int complexidade) {
         this.nome = nome;
         this.complexidade = complexidade;
+        trabalhoRestante = this.complexidade;
     }
 
     //METODOS
@@ -15,10 +17,6 @@ public class Prato {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setComplexidade(int complexidade) {
-        this.complexidade = complexidade;
     }
 
     public String getNome() {
