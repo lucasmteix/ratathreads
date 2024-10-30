@@ -19,7 +19,7 @@ public class Cozinha {
         Random gerador = new Random();
         Prato novoPrato;
         Cozinheiro novoCozinheiro;
-        String nomesPratos[] = {"Feijões", "Arroz com feijão", "Pizza", "Hambúrguer",
+        String[] nomesPratos = {"Feijões", "Arroz com feijão", "Pizza", "Hambúrguer",
                 "Pastel", "Macarrão", "Lasanha", "Sushi", "Bife à parmegiana", "Coxinha",
                 "Strogonoff", "Churrasco", "Feijoada", "Tacos", "Empada", "Torta de frango",
                 "Salada Caesar", "Escondidinho", "Frango à milanesa", "Sopa de legumes"};
@@ -44,7 +44,7 @@ public class Cozinha {
         //Criando os cozinheiros
         for(int i = 1; i<=quantidadeCozinheiros; i++){
 
-            novoCozinheiro = new Cozinheiro();
+            novoCozinheiro = new Cozinheiro("FCFS");
             cozinheiros.add(novoCozinheiro);
         }
 
@@ -52,7 +52,7 @@ public class Cozinha {
         for(int i = 1; i <= quantidadePratos; i++){
 
             novoPrato = new Prato(nomesPratos[gerador.nextInt(nomesPratos.length)] + " (" +
-                    Integer.toString(i) + ")", gerador.nextInt(11)*100);
+                    i + ")", 3/*gerador.nextInt(11)*/);
             pratos.add(novoPrato);
         }
 
