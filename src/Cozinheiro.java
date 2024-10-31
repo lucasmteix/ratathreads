@@ -3,15 +3,31 @@ public class Cozinheiro extends Thread{
     String nome;
     Prato prato;
 
-    private void cozinhar(int tempo){
+    private void cozinhar(int duracao){
 
-        try{
+        //Variaveis auxiliares
 
-            Thread.sleep(prato.getComplexidade());
-        }
-        catch (InterruptedException e){
+        int a = 0;
+        long b = 0;
+        /*variaveis usadas para fazer calculos apenas com o proposito de ocupar a CPU para
+         * simular threads*/
 
-            e.printStackTrace();
+        /*Essa estrutura de decisão repete a estrutura de repeticao aninhada nela duracao vezes.
+         * Como a ideia eh que a estrutura interna dure cerca de 1s para ser executada, duracao
+         * seria o tempo em segundos de duracao de cada prato*/
+
+        for(int t = 0; t < duracao; t++) {
+
+            /*Essa estrutura de repeticao serve apenas para fazer calculos que ocupem a CPU
+             * para simular threads. Buscou-se fazer com que roda-la uma vez ocupasse a CPU por
+             * cerca de 1s*/
+            for (int i = 0; i < 1000000; i++) {
+                a = 0;
+                for (int j = 0; j < 3180; j++) {
+                    a += j;
+                    b++;
+                }
+            }
         }
     }
 
@@ -29,10 +45,22 @@ public class Cozinheiro extends Thread{
 
         while(!Cozinha.pratos.isEmpty()){
 
-            prato = Cozinha.pratos.getFirst();
-            Cozinha.pratos.removeFirst();
+            try {
+
+                Cozinha.semaforoBinario.acquire();
+
+                prato = Cozinha.pratos.getFirst();
+                Cozinha.pratos.removeFirst();
+            } catch (InterruptedException e){
+
+                e.printStackTrace();
+            } finally {
+
+                Cozinha.semaforoBinario.release();
+            }
+
             System.out.println(nome + " cozinhando " + prato.getNome());
-            cozinhar(prato.getComplexidade()*100);
+            cozinhar(prato.getComplexidade());
             System.out.println(nome + " terminou " + prato.getNome());
         }
     }

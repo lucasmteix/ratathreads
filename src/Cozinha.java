@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class Cozinha {
 
     static ArrayList<Prato> pratos = new ArrayList<>();
+    static Semaphore semaforoBinario = new Semaphore(1);
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -52,7 +54,7 @@ public class Cozinha {
         for(int i = 1; i <= quantidadePratos; i++){
 
             novoPrato = new Prato(nomesPratos[gerador.nextInt(nomesPratos.length)] + " (" +
-                    Integer.toString(i) + ")", gerador.nextInt(11)*100);
+                    Integer.toString(i) + ")", gerador.nextInt(11));
             pratos.add(novoPrato);
         }
 
