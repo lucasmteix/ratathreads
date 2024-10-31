@@ -67,6 +67,16 @@ public class Cozinha {
         pratos.add(new Prato("Sushi", 6));
         pratos.add(new Prato("Bife à Parmegiana", 8));
         pratos.add(new Prato("Churrasco", 10));
+        pratos.add(new Prato("Salada Caesar", 2));
+        pratos.add(new Prato("Omelete Simples", 1));
+        pratos.add(new Prato("Frango Grelhado", 2));
+        pratos.add(new Prato("Sopa de Legumes", 1));
+        pratos.add(new Prato("Batata Frita", 2));
+        pratos.add(new Prato("Risoto de Camarão", 6));
+        pratos.add(new Prato("Escondidinho de Carne", 7));
+        pratos.add(new Prato("Moqueca", 5));
+        pratos.add(new Prato("Tacos", 4));
+        pratos.add(new Prato("Bacalhau à Portuguesa", 9));
 
         //Iniciando os cozinheiros
         for(Cozinheiro cozinheiro : cozinheiros){
