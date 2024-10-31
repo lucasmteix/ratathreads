@@ -7,6 +7,7 @@ public class Cozinha {
 
     static ArrayList<Prato> pratos = new ArrayList<>();
     static Semaphore semaforoBinario = new Semaphore(1);
+    static Semaphore semaforoDeContagem = new Semaphore(2);
 
     public static void main(String[] args) throws InterruptedException {
 

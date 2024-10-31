@@ -39,29 +39,39 @@ public class Cozinheiro extends Thread{
     }
 
     @Override
-    public void run(){
-
+    public void run() {
         nome = definirNomeCozinheiro();
 
-        while(!Cozinha.pratos.isEmpty()){
-
+        while (true) {
             try {
-
+                // Acessa o semáforo binário apenas para obter o prato da lista
                 Cozinha.semaforoBinario.acquire();
 
-                prato = Cozinha.pratos.getFirst();
-                Cozinha.pratos.removeFirst();
-            } catch (InterruptedException e){
+                if (Cozinha.pratos.isEmpty()) {
+                    break; // Sai do loop se não houver mais pratos
+                }
 
+                prato = Cozinha.pratos.remove(0); // Acessa e remove o prato
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-
-                Cozinha.semaforoBinario.release();
+                Cozinha.semaforoBinario.release(); // Libera o semáforo para outros acessarem a lista
             }
 
-            System.out.println(nome + " cozinhando " + prato.getNome());
-            cozinhar(prato.getComplexidade());
-            System.out.println(nome + " terminou " + prato.getNome());
+            try {
+                // Controla o acesso à seção crítica com o semáforo de contagem
+                Cozinha.semaforoDeContagem.acquire();
+
+                System.out.println(nome + " cozinhando " + prato.getNome());
+                cozinhar(prato.getComplexidade());
+
+                System.out.println(nome + " terminou " + prato.getNome());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                Cozinha.semaforoDeContagem.release(); // Libera o semáforo de contagem para outro cozinheiro
+            }
         }
     }
+
 }
