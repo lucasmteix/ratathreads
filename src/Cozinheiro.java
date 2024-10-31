@@ -45,6 +45,8 @@ public class Cozinheiro extends Thread{
 
         while(!Cozinha.pratos.isEmpty()){
 
+            int quantum = 3;
+
             try {
 
                 Cozinha.semaforoBinario.acquire();
@@ -60,8 +62,20 @@ public class Cozinheiro extends Thread{
             }
 
             System.out.println(nome + " cozinhando " + prato.getNome());
-            cozinhar(prato.getComplexidade());
-            System.out.println(nome + " terminou " + prato.getNome());
+
+            if(prato.getComplexidade() > quantum){
+
+                cozinhar(quantum);
+                prato.setComplexidade(prato.getComplexidade()-quantum);
+
+                Cozinha.pratos.add(prato);
+                System.out.println(nome + " largou " + prato.getNome());
+            }
+            else{
+
+                cozinhar(prato.getComplexidade());
+                System.out.println(nome + " terminou " + prato.getNome());
+            }
         }
     }
 }
