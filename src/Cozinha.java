@@ -20,6 +20,7 @@ public class Cozinha {
         Scanner leitor = new Scanner(System.in);
         Random gerador = new Random();
         Prato novoPrato;
+        int aleatoriedadeBdT = 0;
         Cozinheiro novoCozinheiro;
         String nomesPratos[] = {"Feijões", "Arroz com feijão", "Pizza", "Hambúrguer",
                 "Pastel", "Macarrão", "Lasanha", "Sushi", "Bife à parmegiana", "Coxinha",
@@ -38,8 +39,44 @@ public class Cozinha {
         System.out.print("Entre com o número de cozinheiros: ");
         quantidadeCozinheiros = leitor.nextInt();
 
-        /*System.out.print("Entre com o número de pratos: ");
-        quantidadePratos =  leitor.nextInt();*/
+        System.out.println("Deseja usar bateria de testes aleatória (1-sim 0-não)? ");
+        aleatoriedadeBdT = leitor.nextInt();
+
+        if(aleatoriedadeBdT == 1) {
+
+            System.out.print("Entre com o número de pratos: ");
+            quantidadePratos = leitor.nextInt();
+
+            //Preenchendo o array de pratos
+            for(int i = 1; i <= quantidadePratos; i++){
+
+                novoPrato = new Prato(nomesPratos[gerador.nextInt(nomesPratos.length)] + " (" +
+                        Integer.toString(i) + ")", gerador.nextInt(11));
+                pratos.add(novoPrato);
+            }
+        } else if (aleatoriedadeBdT == 0) {
+
+            pratos.add(new Prato("Feijoada", 8));
+            pratos.add(new Prato("Arroz com Feijão", 4));
+            pratos.add(new Prato("Pizza Margherita", 5));
+            pratos.add(new Prato("Hambúrguer", 6));
+            pratos.add(new Prato("Pastel de Carne", 3));
+            pratos.add(new Prato("Macarrão à Bolonhesa", 7));
+            pratos.add(new Prato("Lasanha de Queijo", 9));
+            pratos.add(new Prato("Sushi", 6));
+            pratos.add(new Prato("Bife à Parmegiana", 8));
+            pratos.add(new Prato("Churrasco", 10));
+            pratos.add(new Prato("Salada Caesar", 2));
+            pratos.add(new Prato("Omelete Simples", 1));
+            pratos.add(new Prato("Frango Grelhado", 2));
+            pratos.add(new Prato("Sopa de Legumes", 1));
+            pratos.add(new Prato("Batata Frita", 2));
+            pratos.add(new Prato("Risoto de Camarão", 6));
+            pratos.add(new Prato("Escondidinho de Carne", 7));
+            pratos.add(new Prato("Moqueca", 5));
+            pratos.add(new Prato("Tacos", 4));
+            pratos.add(new Prato("Bacalhau à Portuguesa", 9));
+        }
 
         long comeco = System.nanoTime();
 
@@ -49,34 +86,6 @@ public class Cozinha {
             novoCozinheiro = new Cozinheiro();
             cozinheiros.add(novoCozinheiro);
         }
-
-        //Preenchendo o array de pratos
-        /*for(int i = 1; i <= quantidadePratos; i++){
-
-            novoPrato = new Prato(nomesPratos[gerador.nextInt(nomesPratos.length)] + " (" +
-                    Integer.toString(i) + ")", gerador.nextInt(11));
-            pratos.add(novoPrato);
-        }*/
-        pratos.add(new Prato("Feijoada", 8));
-        pratos.add(new Prato("Arroz com Feijão", 4));
-        pratos.add(new Prato("Pizza Margherita", 5));
-        pratos.add(new Prato("Hambúrguer", 6));
-        pratos.add(new Prato("Pastel de Carne", 3));
-        pratos.add(new Prato("Macarrão à Bolonhesa", 7));
-        pratos.add(new Prato("Lasanha de Queijo", 9));
-        pratos.add(new Prato("Sushi", 6));
-        pratos.add(new Prato("Bife à Parmegiana", 8));
-        pratos.add(new Prato("Churrasco", 10));
-        pratos.add(new Prato("Salada Caesar", 2));
-        pratos.add(new Prato("Omelete Simples", 1));
-        pratos.add(new Prato("Frango Grelhado", 2));
-        pratos.add(new Prato("Sopa de Legumes", 1));
-        pratos.add(new Prato("Batata Frita", 2));
-        pratos.add(new Prato("Risoto de Camarão", 6));
-        pratos.add(new Prato("Escondidinho de Carne", 7));
-        pratos.add(new Prato("Moqueca", 5));
-        pratos.add(new Prato("Tacos", 4));
-        pratos.add(new Prato("Bacalhau à Portuguesa", 9));
 
         //Iniciando os cozinheiros
         for(Cozinheiro cozinheiro : cozinheiros){
