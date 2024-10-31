@@ -62,12 +62,24 @@ public class Cozinheiro extends Thread{
             prato = Cozinha.pratos.getFirst();
             System.out.println(nome + " cozinhando " + prato.getNome());
 
-            while(prato.trabalhoRestante > 0){
+            try {
 
-                cicloDeCozimento(prato);
+                Cozinha.semaforoBinario.acquire();
+
+                while (prato.trabalhoRestante > 0) {
+
+                    cicloDeCozimento(prato);
+                }
+
+                Cozinha.pratos.removeFirst();
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+            } finally {
+
+                Cozinha.semaforoBinario.release();
             }
 
-            Cozinha.pratos.removeFirst();
             System.out.println(nome + " terminou " + prato.getNome());
         }
     }

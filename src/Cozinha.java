@@ -1,10 +1,25 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class Cozinha {
 
     static ArrayList<Prato> pratos = new ArrayList<>();
+    static Semaphore semaforoBinario = new Semaphore(1);
+
+    static void mostrarPratos(ArrayList<Prato> pratos){
+
+        System.out.println();
+        System.out.println("------------------------------");
+        System.out.println("Mostrando a lista de pratos " + pratos + ":");
+
+        for (Prato prato : pratos) System.out.println(prato.getNome() + " complexidade " +
+                prato.getComplexidade());
+
+        System.out.println("------------------------------");
+        System.out.println();
+    }
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -44,7 +59,7 @@ public class Cozinha {
         //Criando os cozinheiros
         for(int i = 1; i<=quantidadeCozinheiros; i++){
 
-            novoCozinheiro = new Cozinheiro("RR");
+            novoCozinheiro = new Cozinheiro("FCFS");
             cozinheiros.add(novoCozinheiro);
         }
 
@@ -55,6 +70,8 @@ public class Cozinha {
                     i + ")", gerador.nextInt(11));
             pratos.add(novoPrato);
         }
+
+        mostrarPratos(pratos);
 
         //Iniciando os cozinheiros
         for(Cozinheiro cozinheiro : cozinheiros){
