@@ -39,8 +39,8 @@ public class Cozinha {
         System.out.print("Entre com o número de cozinheiros: ");
         quantidadeCozinheiros = leitor.nextInt();
 
-        System.out.print("Entre com o número de pratos: ");
-        quantidadePratos =  leitor.nextInt();
+        /*System.out.print("Entre com o número de pratos: ");
+        quantidadePratos =  leitor.nextInt();*/
 
         long comeco = System.nanoTime();
 
@@ -52,12 +52,18 @@ public class Cozinha {
         }
 
         //Preenchendo o array de pratos
-        for(int i = 1; i <= quantidadePratos; i++){
+        pratos.add(new Prato("Feijoada", 8));
+        pratos.add(new Prato("Arroz com Feijão", 4));
+        pratos.add(new Prato("Pizza Margherita", 5));
+        pratos.add(new Prato("Hambúrguer", 6));
+        pratos.add(new Prato("Pastel de Carne", 3));
+        pratos.add(new Prato("Macarrão à Bolonhesa", 7));
+        pratos.add(new Prato("Lasanha de Queijo", 9));
+        pratos.add(new Prato("Sushi", 6));
+        pratos.add(new Prato("Bife à Parmegiana", 8));
+        pratos.add(new Prato("Churrasco", 10));
 
-            novoPrato = new Prato(nomesPratos[gerador.nextInt(nomesPratos.length)] + " (" +
-                    Integer.toString(i) + ")", gerador.nextInt(11));
-            pratos.add(novoPrato);
-        }
+
 
         //Iniciando os cozinheiros
         for(Cozinheiro cozinheiro : cozinheiros){
