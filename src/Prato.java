@@ -4,10 +4,12 @@ public class Prato {
 
     private String nome;
     private int complexidade;
+    int tempoEspera;
 
     public Prato(String nome, int complexidade) {
         this.nome = nome;
         this.complexidade = complexidade;
+        this.tempoEspera = 0;
     }
 
     //METODOS

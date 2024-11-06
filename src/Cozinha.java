@@ -7,13 +7,15 @@ public class Cozinha {
 
     static ArrayList<Prato> pratos = new ArrayList<>();
     static Semaphore semaforoBinario = new Semaphore(1);
+    static int tempoEsperaTotal=0;
+    float tempoEsperaMedio;
 
     public static void main(String[] args) throws InterruptedException {
 
         //DECLARACAO DE VARIAVEIS
 
         //Variaveis de entrada
-        int quantidadePratos;
+        int quantidadePratos=1;
         int quantidadeCozinheiros;
 
         //Variaveis auxiliares
@@ -56,6 +58,7 @@ public class Cozinha {
             }
         } else if (aleatoriedadeBdT == 0) {
 
+            quantidadePratos = 20;
             pratos.add(new Prato("Feijoada", 8));
             pratos.add(new Prato("Arroz com Feijão", 4));
             pratos.add(new Prato("Pizza Margherita", 5));
@@ -101,5 +104,6 @@ public class Cozinha {
 
         long fim = System.nanoTime();
         System.out.println("t: " + (double)(fim - comeco)/1000000000);
+        System.out.println("Tempo de espera médio: " + tempoEsperaTotal/quantidadePratos);
     }
 }
