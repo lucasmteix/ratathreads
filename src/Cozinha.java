@@ -7,6 +7,8 @@ public class Cozinha {
 
     static ArrayList<Prato> pratos = new ArrayList<>();
     static Semaphore semaforoBinario = new Semaphore(1);
+    static int tempoEsperaTotal=0;
+    float tempoEsperaMedio;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -57,6 +59,7 @@ public class Cozinha {
                     Integer.toString(i) + ")", gerador.nextInt(11));
             pratos.add(novoPrato);
         }*/
+        quantidadePratos=20;
         pratos.add(new Prato("Feijoada", 8));
         pratos.add(new Prato("Arroz com Feijão", 4));
         pratos.add(new Prato("Pizza Margherita", 5));
@@ -92,5 +95,6 @@ public class Cozinha {
 
         long fim = System.nanoTime();
         System.out.println("t: " + (double)(fim - comeco)/1000000000);
+        System.out.println("Tempo de espera médio: " + tempoEsperaTotal/quantidadePratos);
     }
 }

@@ -53,6 +53,16 @@ public class Cozinheiro extends Thread{
 
                 prato = Cozinha.pratos.getFirst();
                 Cozinha.pratos.removeFirst();
+
+                if(prato.getComplexidade() > quantum){
+
+                    Cozinha.tempoEsperaTotal += quantum;
+                }
+                else{
+
+                    Cozinha.tempoEsperaTotal += prato.getComplexidade()*Cozinha.pratos.size();
+                }
+
             } catch (InterruptedException e){
 
                 e.printStackTrace();
